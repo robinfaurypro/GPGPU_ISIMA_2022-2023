@@ -83,7 +83,7 @@ The CUDA languages support the struct keyword. You can create a struct for a rab
 \end{lstlisting}
 \begin{lstlisting}
 	__global__ 
-	void kernel_draw_map(cudaSurfaceObject_t surface, Rock* rocks, int32_t nb_rocks)
+	void kernel_draw_map(cudaSurfaceObject_t surface)
 \end{lstlisting}
 Generate a random map by using the std::uniform\_real\_distribution tool. You can create a buffer for each type of object you want in your scene (one for the rabbits and one for the foxes). The rabbit buffer can have 500 rabbits and the fox buffer 50 foxes. At the beginning, only 40 rabbits and 6 foxes will be alive. Any animal will be represent as a circle.
 
