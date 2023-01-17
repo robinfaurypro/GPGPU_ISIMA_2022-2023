@@ -13,17 +13,6 @@ if(NOT stb)
 	FetchContent_Populate(stb)
 endif()
 
-FetchContent_Declare(
-	glad
-	GIT_REPOSITORY https://github.com/Dav1dde/glad.git
-	GIT_TAG		   v0.1.36
-)
-FetchContent_GetProperties(glad)
-if(NOT glad_POPULATED)
-	FetchContent_Populate(glad)
-	add_subdirectory(${glad_SOURCE_DIR} ${glad_BINARY_DIR})
-endif()
-
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -39,10 +28,10 @@ if(NOT glfw_POPULATED)
 endif()
 
 add_executable(ISIMA_PROJECT_1 src/main.cpp)
-add_library(gpgpu include/gpgpu.h src/gpgpu/gpgpu.cu)
+add_library(gpgpu include/gpgpu.h src/gpgpu/gpgpu.cu src/glad.c include/glad/glad.h)
 
 target_include_directories(ISIMA_PROJECT_1 PRIVATE ${stb_SOURCE_DIR} include ${glfw_SOURCE_DIR}/include ${glad_BINARY_DIR}/include)
 target_include_directories(gpgpu PRIVATE include)
 
 target_link_libraries(gpgpu PRIVATE glfw)
-target_link_libraries(ISIMA_PROJECT_1 PRIVATE gpgpu glfw glad)
+target_link_libraries(ISIMA_PROJECT_1 PRIVATE gpgpu glfw)
