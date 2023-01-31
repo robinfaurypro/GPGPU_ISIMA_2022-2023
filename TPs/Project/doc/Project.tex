@@ -17,7 +17,7 @@
 
 \begin{document}
 
-\title{Project\\An ant simulation}
+\title{Project\\A prey/predator simulation}
 \maketitle
 
 \section{Introduction}
@@ -124,5 +124,20 @@ We simply generate a sinus function with a very high frequency and we grab only 
 \subsection{Atomic operation}
 During this project, you will read and write into buffers at different location from different threads. This situation must be handle in a clean way to avoid race conditions. In CUDA, you have a large collection of functions call atomicFoo to perform atomic operation. For example, atomicAdd can add integer to a value stored in global memory without collide with other threads. This is very convenient if you need to update a acceleration structure.\\
 For this project a good acceleration structure is a grid. When you will need to check the closest prey, you just need to iterate on the position of preys on the same cell (and neighbors). When an animal move, you can use the atomicExch function to update his index on the grid.
+
+\subsection{Acceleration structure}
+For the moment, the draw of the animal or the search of the closest prey is done with an iteration through the array of prey. The complexity is $O(n)$ with $n$ the number of preys. The acceleration structure can store the ID of each prey in a cell of a grid and when you need to find the closest prey you just have to iterate through the prey ID store in the cell. If you allow each cell to store 16 animals the complexity become $O(16)$. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{figures/grid.png}
+	\caption{Acceleration structure in grid}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{figures/detection.png}
+	\caption{Iterate on close cells}
+\end{figure}
 
 \end{document}
