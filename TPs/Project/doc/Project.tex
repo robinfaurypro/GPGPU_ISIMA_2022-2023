@@ -126,7 +126,7 @@ During this project, you will read and write into buffers at different location 
 For this project a good acceleration structure is a grid. When you will need to check the closest prey, you just need to iterate on the position of preys on the same cell (and neighbors). When an animal move, you can use the atomicExch function to update his index on the grid.
 
 \subsection{Acceleration structure}
-For the moment, the draw of the animal or the search of the closest prey is done with an iteration through the array of prey. The complexity is $O(n)$ with $n$ the number of preys. The acceleration structure can store the ID of each prey in a cell of a grid and when you need to find the closest prey you just have to iterate through the prey ID store in the cell. If you allow each cell to store 16 animals the complexity become $O(16)$. 
+For the moment, the draw of the animal or the search of the closest prey is done with an iteration through the array of prey. The complexity is $O(n)$ with $n$ the number of preys. The acceleration structure can store the ID of each prey in a cell of a grid and when you need to find the closest prey you just have to iterate through the prey ID store in the cell. If you allow each cell to store 16 animals the complexity become $O(16)$. For more advance structure, you can take a look to the Octree.
 
 \begin{figure}[H]
 	\centering
